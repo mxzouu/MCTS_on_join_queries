@@ -1,6 +1,4 @@
-"""
-plots.py - builds the figures for the report from the CSVs in outputs/.
-"""
+
 
 import csv
 import os

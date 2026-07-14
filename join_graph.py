@@ -1,18 +1,4 @@
-"""
-join_graph.py
 
-Generates synthetic "query join graphs": a set of N tables (relations) with
-base cardinalities, connected by join edges with selectivities. This mimics
-the information a real query optimizer has after statistics collection
-(table sizes + join selectivities), and is the standard simplification used
-in join-order-optimization research (Selinger-style size estimation:
-Ioannidis & Christodoulakis 1991, and used e.g. in Schelter's MCTS join-order
-work and in MCTS-Extreme).
-
-We restrict to CONNECTED join graphs: a valid join order may only add a table
-that shares an edge with at least one table already joined. This avoids
-accidental cartesian products, matching how real SQL join predicates work.
-"""
 
 import random
 import itertools

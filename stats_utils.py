@@ -1,12 +1,4 @@
-"""
-stats_utils.py
 
-Lightweight, dependency-free statistics helpers (stdlib `random` only --
-no scipy/numpy dependency) used to turn raw per-instance measurements into
-defensible claims: confidence intervals instead of bare point estimates,
-and a significance test for "is MCTS actually better than Greedy on these
-instances, or could this be noise?".
-"""
 
 import math
 import random

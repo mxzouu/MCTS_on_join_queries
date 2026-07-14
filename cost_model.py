@@ -1,18 +1,4 @@
-"""
-cost_model.py
 
-Classic query-optimizer cost model:
-  size(S) = product of card(t) for t in S  *  product of selectivity(e) for
-            edges e fully inside S
-  cost(order) = sum_{k=1..n} size(prefix_k)
-
-This is the standard "sum of intermediate result cardinalities" cost proxy
-used to approximate I/O + CPU cost of a left-deep join plan (the same idea
-underlying System-R style optimizers and reused in learned-optimizer papers).
-Because it only depends on the *set* of tables joined so far (not internal
-tree shape), a join order is simply a permutation/sequence of tables, which
-is exactly the state representation MCTS operates over.
-"""
 
 import math
 

@@ -1,29 +1,4 @@
-"""
-bushy_algorithms.py
 
-The GENERAL join-order problem (as in real optimizers like System R /
-Selinger) allows BUSHY join trees: at each step you may merge any two
-already-built partial results, not just extend one growing chain by a
-single table. This is what makes join-order optimization genuinely
-NP-hard -- the left-deep/chain restriction used in `algorithms.py` happens
-to be polynomial-time solvable for tree-shaped query graphs under the
-"sum of intermediate sizes" cost model (a classical result, see the IKKBZ
-algorithm, Krishnamurthy/Boral/Zaniolo 1986), which is exactly why Greedy
-and MCTS looked identical there: there was no real combinatorial hardness
-to exploit.
-
-State representation: a "forest" = a frozenset of frozensets, each inner
-frozenset being one already-built partial join group. Initially it's n
-singleton groups; a "merge" action combines two connected groups into one;
-the process ends when a single group remains.
-
-1. bushy_exact_dp   - O(3^n) subset-DP (Selinger-style), the true optimum.
-                      Only tractable for small n (this blows up much faster
-                      than the O(2^n) left-deep DP).
-2. bushy_greedy     - agglomerative: repeatedly merge whichever connected
-                      pair of groups is cheapest right now (myopic).
-3. bushy_mcts       - MCTS over the space of merge sequences.
-"""
 
 import math
 import random
