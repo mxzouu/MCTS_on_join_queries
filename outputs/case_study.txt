@@ -1,0 +1,47 @@
+Case study: n=10 tables, seed=10005 (worst Greedy/DP ratio among small-scale instances with n<=10: 10400.61x)
+
+Table cardinalities:
+  table 0: card=437,542
+  table 1: card=57,235
+  table 2: card=31,008
+  table 3: card=8,065
+  table 4: card=17,271
+  table 5: card=264,099
+  table 6: card=1,370
+  table 7: card=49,003
+  table 8: card=11,537
+  table 9: card=355,278
+
+Join edges (table_a, table_b): selectivity
+  (0, 3): 0.87499
+  (0, 5): 0.89871
+  (0, 6): 0.60203
+  (0, 7): 0.80852
+  (0, 9): 0.08430
+  (1, 3): 0.54581
+  (1, 5): 0.03740
+  (1, 6): 0.37820
+  (1, 7): 0.24629
+  (1, 9): 0.70827
+  (2, 5): 0.20863
+  (2, 7): 0.87169
+  (2, 9): 0.08104
+  (3, 4): 0.67543
+  (3, 7): 0.34039
+  (3, 8): 0.80452
+  (4, 8): 0.37258
+  (5, 6): 0.89849
+  (5, 8): 0.10262
+  (6, 9): 0.12863
+  (8, 9): 0.54095
+
+DP-optimal cost:     1.532540e+20
+  plan: ((((9 JOIN 6) JOIN 2) JOIN (3 JOIN 0)) JOIN (((8 JOIN 4) JOIN 5) JOIN (7 JOIN 1)))
+
+Greedy cost:         1.593936e+24  (ratio to optimal: 10400.61x)
+  plan: ((((3 JOIN 7) JOIN (1 JOIN 6)) JOIN (0 JOIN 5)) JOIN ((2 JOIN 9) JOIN (8 JOIN 4)))
+
+MCTS cost:           1.532540e+20  (ratio to optimal: 1.0000x)
+  plan: ((((1 JOIN 5) JOIN 7) JOIN (4 JOIN 8)) JOIN ((2 JOIN (9 JOIN 6)) JOIN (3 JOIN 0)))
+
+Reading note: Greedy always merges whichever pair is cheapest *right now*. Compare its first merge above to the DP-optimal plan's top-level split to see the locally-attractive-but-globally-bad choice it locked itself into.

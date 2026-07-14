@@ -1,0 +1,8 @@
+Statistical summary (small-scale results, n=4..14, 60 paired instances)
+
+Greedy / DP-optimal  -- geometric mean = 166.914x  (95% bootstrap CI: [58.899, 469.197])
+MCTS   / DP-optimal  -- geometric mean = 1.076x  (95% bootstrap CI: [1.017, 1.158])
+
+Paired sign-flip permutation test on log(greedy_ratio) - log(mcts_ratio) per instance (H0: no systematic difference):
+  p-value = 0.00000
+  (p < 0.05 => the gap between Greedy and MCTS across these instances is unlikely to be due to chance)
